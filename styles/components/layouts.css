@@ -1,0 +1,17 @@
+@import 'tailwindcss/components';
+
+@layer components {
+  .container-inner-width {
+    @apply max-w-[1180px];
+  }
+  .container-outer-width {
+    @apply max-w-[1260px];
+  }
+  .direction-rtl {
+    direction: rtl;
+  }
+  .direction-ltr {
+    direction: ltr;
+  }
+
+}

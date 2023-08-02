@@ -1,0 +1,29 @@
+
+.shopify-text p {
+  @apply text-mono-14 font-mono
+}
+
+.shopify-text {
+  h2 {
+    @apply text-mono-48 font-mono my-4 800:mt-10
+
+  }
+  h3 {
+    @apply text-mono-36 font-mono
+  }
+  img {
+    @apply my-8 w-full
+  }
+  img + em {
+    @apply relative -top-[30px] opacity-70
+  }
+  a {
+    @apply underline
+  }
+}
+
+.blog-header {
+  h1, span {
+    text-shadow: 0 0 20px rgb(0 0 0 / 22%)
+  }
+}
