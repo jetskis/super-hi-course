@@ -11,7 +11,7 @@ export default {
 	fields: [
 		{
 			name: 'product',
-			title: 'Product Landing',
+			title: 'Product',
 			type: 'reference',
 			to: [{type: 'product'}],
 			validation: Rule => Rule.required(),

@@ -35,27 +35,13 @@ export const structure = (S, context) => {
 		.schemaType('page')
 		.icon(DocumentIcon)
 		.child(
-			S.documentTypeList('page')
-				.title('Pages')
-				.child(documentId =>
-					S.document()
-						.documentId(documentId)
-						.schemaType('page')
-				),
-		);
+			S.documentTypeList('page').title('Pages'))
 
 	const homePageMenuItem = S.listItem()
 		.title('Home Pages')
 		.schemaType('home')
 		.child(
-			S.documentTypeList('home')
-				.title('Home Pages')
-				.child(documentId =>
-					S.document()
-						.documentId(documentId)
-						.schemaType('information')
-				),
-		);
+			S.documentTypeList('home').title('Home'))
 
 	const allPageMenuItem = S.listItem()
 		.title('Pages')
@@ -218,7 +204,7 @@ export const structure = (S, context) => {
 		.child(S.editor().title('Settings').schemaType('settings').documentId('settings'))
 
   return S.list()
-    .title('Content')
+    .title('Superhi')
     .items([
 			allPageMenuItem,
       S.divider(),

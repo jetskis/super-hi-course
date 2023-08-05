@@ -14,7 +14,7 @@ const annotations = [
 // Document types
 import collection from './documents/collection'
 import colorType from './documents/colorType'
-import homePage from './documents/home'
+import home from './documents/home'
 import page from './documents/page'
 import product from './documents/product'
 import productVariant from './documents/productVariant'
@@ -23,7 +23,7 @@ import theme from './documents/theme'
 const documents = [
   collection,
   colorType,
-  homePage,
+  home,
   page,
   product,
   productVariant,

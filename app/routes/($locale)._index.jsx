@@ -10,6 +10,11 @@ export async function loader({context}) {
   const products = await context.storefront.query(PRODUCT_QUERY)
   const articles = await context.storefront.query(ARTICLES_QUERY)
 
+  const sanityPage = await context.sanity.fetch(`
+  *[_type == "home"] {
+    ...
+  }[0]`)
+
   // We're not covering accounts/auth in this class
   // const customerAccessToken = await context.session.get('customerAccessToken');
   // const customer = customerAccessToken ? 
@@ -17,6 +22,7 @@ export async function loader({context}) {
   //   : false
 
   return {
+    sanityPage,
     collections,
     pages,
     articles,
@@ -36,7 +42,7 @@ export const handle = {
 export default function Homepage() {
 
   const fetcher = useFetcher();
-  const {collections, pages, products, articles} = useLoaderData()
+  const {collections, sanityPage, pages, products, articles} = useLoaderData()
 
   const pagesArray = flattenConnection(pages.pages)
   const productArray = flattenConnection(products.products)
@@ -46,6 +52,9 @@ export default function Homepage() {
   return (
     <div className='relative'>
       <>
+        <div className='min-h-screen flex justify-center items-center'>
+          <h2 className='text-mono-64'>{sanityPage.title}</h2>
+        </div>
         {/* Let's make sure to remove the 80px from the sticky top */}
         <div className='min-h-[calc(100vh-120px)] w-screen'>
           {/* 2UP Module */}

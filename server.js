@@ -7,7 +7,6 @@ import {
   createCookieSessionStorage,
 } from '@shopify/remix-oxygen';
 
-// import * as mongoose from 'mongoose'
 import {createClient} from '@sanity/client';
 
 /**
@@ -47,12 +46,12 @@ export default {
       });
 
       // Add Sanity after you initialize it
-      // const sanity = createClient({
-      //   apiVersion: 'v2022-05-01',
-      //   dataset: 'production',
-      //   projectId: '',
-      //   useCdn: true,
-      // })
+      const sanity = createClient({
+        apiVersion: 'v2022-05-01',
+        dataset: 'production',
+        projectId: 'jp1alyog',
+        useCdn: true,
+      })
 
 
       /**
@@ -64,7 +63,7 @@ export default {
         mode: process.env.NODE_ENV,
         getLoadContext: () => ({
           session, 
-          // sanity, // We'll be adding Sanity Shortly
+          sanity, // We'll be adding Sanity Shortly
           storefront, 
           env
         }),
