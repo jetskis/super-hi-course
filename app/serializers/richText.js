@@ -40,17 +40,17 @@ const InternalLink = props => {
 const BlockRender = props => {
 	const {style = 'normal'} = props.node;
 	if (style === 'h1') {
-		return <h1 className='text-sans-82 font-sans py-1 my-2 800:my-4'>{props.children}</h1>;
+		return <h1 className='text-mono-82 font-mono py-1 my-2 800:my-4'>{props.children}</h1>;
 	} else if (style === 'h2') {
-		return <h2 className='text-sans-64 font-sans py-1 my-2 800:my-4'>{props.children}</h2>;
+		return <h2 className='text-mono-64 font-mono py-1 my-2 800:my-4'>{props.children}</h2>;
 	} else if (style === 'h2-serif') {
 		return <h2 className='text-serif-42 font-serif py-1 my-2 800:my-4'>{props.children}</h2>;
 	} else if (style === 'h3') {
-		return <h3 className='text-sans-36 font-sans'>{props.children}</h3>;
+		return <h3 className='text-mono-36 font-mono'>{props.children}</h3>;
 	} else if (style === 'h4') {
-		return <h4 className='text-24 leading-29 font-sans'>{props.children}</h4>;
+		return <h4 className='text-24 leading-29 font-mono'>{props.children}</h4>;
 	} else if (style === 'h5') {
-		return <h5 className='text-sans-14 uppercase my-2  font-sans'>{props.children}</h5>;
+		return <h5 className='text-mono-14 uppercase my-2  font-mono'>{props.children}</h5>;
 	} else if (style === 'normal') {
 		return <p className="text-15 leading-21 my-2 font-plaid">{props.children}</p>;
 	} else if (style === 'script') {

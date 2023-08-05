@@ -16,6 +16,7 @@ const FONT_SIZES = {
   'mono-200': ['200px', '184px'],
   'mono-120': ['120px', '136px'],
   'mono-100': ['100px', '126px'],
+  'mono-82': ['82px', '100px'],
   'mono-64': ['64px', '80px'],
   'mono-48': ['48px', '64px'],
   'mono-36': ['36px', '52px'],

@@ -73,6 +73,7 @@ import moduleImage from './objects/module/image'
 import moduleImages from './objects/module/images'
 import moduleProduct from './objects/module/product'
 import moduleProducts from './objects/module/products'
+import moduleHero from './objects/module/hero'
 import moduleStandardText from './objects/module/standardText'
 import placeholderString from './objects/placeholderString'
 import productHotspots from './objects/productHotspots'
@@ -98,6 +99,7 @@ const objects = [
   moduleCallToAction,
   moduleImage,
   moduleImages,
+  moduleHero,
 
   moduleProduct,
   moduleProducts,

@@ -4,6 +4,9 @@ import {Await, useLoaderData, useFetcher, Link} from '@remix-run/react';
 import { AnalyticsPageType } from '@shopify/hydrogen';
 import { flattenConnection } from '@shopify/hydrogen-react'
 
+import BlockContent from '@sanity/block-content-to-react'
+import Serializer from '~/serializers/richText'
+
 export async function loader({context}) {
   const collections = await context.storefront.query(COLLECTIONS_QUERY)
   const pages = await context.storefront.query(PAGES_QUERY)
@@ -11,8 +14,20 @@ export async function loader({context}) {
   const articles = await context.storefront.query(ARTICLES_QUERY)
 
   const sanityPage = await context.sanity.fetch(`
-  *[_type == "home"] {
-    ...
+  *[_type == 'home'] {
+    ...,
+    modules[] {
+      _type,
+      _key,
+      (_type == 'module.hero') => {
+        'bgColor': bgColor.hex,
+        'image': image.asset-> {
+          metadata,
+          url
+        },
+        text
+      }
+    }
   }[0]`)
 
   // We're not covering accounts/auth in this class
@@ -55,24 +70,30 @@ export default function Homepage() {
         <div className='min-h-screen flex justify-center items-center'>
           <h2 className='text-mono-64'>{sanityPage.title}</h2>
         </div>
+        <div>
+          {sanityPage.modules?.map((module) => {
+            return (
+              <section style={{
+                backgroundColor: module.bgColor
+              }} key={module._key} className='h-[calc(100vh-80px)] min-h-[600px]'> 
+                <div className='grid h-full grid-cols-2 w-full'>
+                  <div className='col-span-1 flex items-end'>
+                    <div className='p-4 800:p-8 pb-6'>
+                      <BlockContent blocks={module.text} serializers={Serializer} />
+                    </div>
+                  </div>
+                  <div className='col-span-1 bg-white relative'>
+                    <img className='absolute top-0 left-0 w-full h-full object-cover' src={module.image?.url} />
+                  </div>
+                </div>
+              </section>
+            )
+          })}
+        </div>
         {/* Let's make sure to remove the 80px from the sticky top */}
         <div className='min-h-[calc(100vh-120px)] w-screen'>
           {/* 2UP Module */}
-          <section className='h-[calc(100vh-80px)] min-h-[600px]'> 
-            <div className='grid h-full grid-cols-2 w-full'>
-              <div className='col-span-1 bg-primary-green flex items-end'>
-                <div className='p-4 800:p-8 pb-6'>
-                  <h1 className='text-mono-64'>Welcome to Modular Commerce</h1>
-                  <div className='flex mt-4'>
-                    <Link to='/products/40l-bag' className='button primary big'>
-                      <span>Product Page</span>
-                    </Link>
-                  </div>
-                </div>
-              </div>
-              <div className='col-span-1 bg-primary-green/60' />
-            </div>
-          </section>
+          
           {/* VALUE PROPS */}
           <section className='p-4 text-center 800:py-20'>
             <div className='grid grid-cols-3 gap-4 max-w-[900px] mx-auto'>

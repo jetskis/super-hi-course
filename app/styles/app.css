@@ -1782,6 +1782,10 @@ select {
   font-size: 64px;
   line-height: 80px;
 }
+.text-mono-82 {
+  font-size: 82px;
+  line-height: 100px;
+}
 .font-400 {
   font-weight: 400;
 }
