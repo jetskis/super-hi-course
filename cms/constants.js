@@ -31,9 +31,9 @@ export const SANITY_API_VERSION = '2022-10-25'
 export const SHOPIFY_STORE_ID = ''
 
 export const COLORS = [
-  '#E72106',
-  '#9A1C00',
-  '#f4f1ee',
-  '#EDA08E',
-  '#193147',
+  '#000000',
+  '#CBFF00',
+  '#ffffff',
+  '#D1EBED',
+  '#C4C4C4',
 ]

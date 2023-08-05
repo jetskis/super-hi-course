@@ -4,8 +4,6 @@ import React from 'react'
  */
 import {DocumentIcon, DocumentsIcon, ThLargeIcon, ComponentIcon, TrolleyIcon} from '@sanity/icons'
 
-import settings from './settingStructure'
-
 // If you add document types to desk structure manually, you can add them to this function to prevent duplicates in the root pane
 const hiddenDocTypes = (listItem) => {
   const id = listItem.getId()
@@ -31,6 +29,7 @@ const hiddenDocTypes = (listItem) => {
 }
 
 export const structure = (S, context) => {
+
   const pageMenuItem = S.listItem()
 		.title('Pages')
 		.schemaType('page')
@@ -212,6 +211,11 @@ export const structure = (S, context) => {
 					colorTypeMenuItems,
 				]),
 		);
+	
+	const settingsMenu = S.listItem()
+		.title('Settings')
+		.schemaType('settings')
+		.child(S.editor().title('Settings').schemaType('settings').documentId('settings'))
 
   return S.list()
     .title('Content')
@@ -222,7 +226,7 @@ export const structure = (S, context) => {
 			productMenuItem,
       S.divider(),
 			modules,
-      settings(S, context),
+			settingsMenu,
       S.divider(),
       ...S.documentTypeListItems().filter(hiddenDocTypes),
     ])

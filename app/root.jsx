@@ -10,6 +10,7 @@ import {
   useRouteError,
 } from '@remix-run/react';
 
+import { useEffect } from 'react'
 import { ExternalScripts } from 'remix-utils'
 
 import {defer} from '@shopify/remix-oxygen';
@@ -18,7 +19,7 @@ import {CART_QUERY} from '~/queries/cart';
 import { Seo } from '@shopify/hydrogen'
 import { ShopifyProvider } from '@shopify/hydrogen-react'
 
-// import { useAnalyticsFromLoaders, useAnalyticsFromActions } from './utils'
+import { useAnalyticsFromLoaders, useAnalyticsFromActions } from './lib/utils'
 
 import styles from './styles/app.css';
 import favicon from '../public/favicon.svg';
