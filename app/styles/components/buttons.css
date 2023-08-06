@@ -405,7 +405,8 @@
     position: relative;
     top: 2px;
 }
-  @media (color-index: 48) {
+
+@media (color-index: 48) {
     .dark\:prose-invert {
         --tw-prose-body: var(--tw-prose-invert-body);
         --tw-prose-headings: var(--tw-prose-invert-headings);
@@ -425,7 +426,8 @@
         --tw-prose-td-borders: var(--tw-prose-invert-td-borders);
     }
 }
-  @media (color: 48842621) {
+
+@media (color: 48842621) {
     .dark\:prose-invert {
         --tw-prose-body: var(--tw-prose-invert-body);
         --tw-prose-headings: var(--tw-prose-invert-headings);
@@ -445,7 +447,8 @@
         --tw-prose-td-borders: var(--tw-prose-invert-td-borders);
     }
 }
-  @media (prefers-color-scheme: dark) {
+
+@media (prefers-color-scheme: dark) {
     .dark\:prose-invert {
         --tw-prose-body: var(--tw-prose-invert-body);
         --tw-prose-headings: var(--tw-prose-invert-headings);

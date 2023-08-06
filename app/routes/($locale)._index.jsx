@@ -4,8 +4,7 @@ import {Await, useLoaderData, useFetcher, Link} from '@remix-run/react';
 import { AnalyticsPageType } from '@shopify/hydrogen';
 import { flattenConnection } from '@shopify/hydrogen-react'
 
-import BlockContent from '@sanity/block-content-to-react'
-import Serializer from '~/serializers/richText'
+import PageComponentList from '~/components/PageComponentList'
 
 export async function loader({context}) {
   const collections = await context.storefront.query(COLLECTIONS_QUERY)
@@ -71,24 +70,7 @@ export default function Homepage() {
           <h2 className='text-mono-64'>{sanityPage.title}</h2>
         </div>
         <div>
-          {sanityPage.modules?.map((module) => {
-            return (
-              <section style={{
-                backgroundColor: module.bgColor
-              }} key={module._key} className='h-[calc(100vh-80px)] min-h-[600px]'> 
-                <div className='grid h-full grid-cols-2 w-full'>
-                  <div className='col-span-1 flex items-end'>
-                    <div className='p-4 800:p-8 pb-6'>
-                      <BlockContent blocks={module.text} serializers={Serializer} />
-                    </div>
-                  </div>
-                  <div className='col-span-1 bg-white relative'>
-                    <img className='absolute top-0 left-0 w-full h-full object-cover' src={module.image?.url} />
-                  </div>
-                </div>
-              </section>
-            )
-          })}
+          <PageComponentList components={sanityPage.modules} />
         </div>
         {/* Let's make sure to remove the 80px from the sticky top */}
         <div className='min-h-[calc(100vh-120px)] w-screen'>

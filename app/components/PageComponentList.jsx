@@ -1,9 +1,9 @@
 import React from 'react';
 
-// import { CustomModule } from '~/components/modules/CustomModule'
+import { Hero } from '~/components/sharable/hero'
 
 const COMPONENTS = {
-	// 'module.customModule': CustomModule
+	'module.hero': Hero
 };
 
 const PageComponentList = ({components = [], componentProps = {}}) => {
