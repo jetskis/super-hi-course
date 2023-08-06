@@ -4,6 +4,8 @@ import {Await, useLoaderData, useFetcher, Link} from '@remix-run/react';
 import { AnalyticsPageType } from '@shopify/hydrogen';
 import { flattenConnection } from '@shopify/hydrogen-react'
 
+import { QUERY_HOME } from '~/queries/sanity'
+
 import PageComponentList from '~/components/PageComponentList'
 
 export async function loader({context}) {
@@ -12,22 +14,9 @@ export async function loader({context}) {
   const products = await context.storefront.query(PRODUCT_QUERY)
   const articles = await context.storefront.query(ARTICLES_QUERY)
 
-  const sanityPage = await context.sanity.fetch(`
-  *[_type == 'home'] {
-    ...,
-    modules[] {
-      _type,
-      _key,
-      (_type == 'module.hero') => {
-        'bgColor': bgColor.hex,
-        'image': image.asset-> {
-          metadata,
-          url
-        },
-        text
-      }
-    }
-  }[0]`)
+  const sanityPage = await context.sanity.fetch(QUERY_HOME)
+
+  console.log('sanityPage', sanityPage)
 
   // We're not covering accounts/auth in this class
   // const customerAccessToken = await context.session.get('customerAccessToken');
@@ -66,9 +55,6 @@ export default function Homepage() {
   return (
     <div className='relative'>
       <>
-        <div className='min-h-screen flex justify-center items-center'>
-          <h2 className='text-mono-64'>{sanityPage.title}</h2>
-        </div>
         <div>
           <PageComponentList components={sanityPage.modules} />
         </div>

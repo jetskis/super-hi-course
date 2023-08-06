@@ -77,18 +77,33 @@ const MODULE_STANDARD_TEXT = groq`
   }
 `
 
+const MODULE_HERO = groq`
+  (_type == 'module.hero') => {
+    'bgColor': bgColor.hex,
+    'image': image.asset-> {
+      metadata,
+      url
+    },
+    text[] {
+      ${richText}
+    }
+  }
+`
+
 
 
 const MODULES = groq`
   _type,
   _key,
   ${MODULE_STANDARD_TEXT},
+  ${MODULE_HERO}
 `
 
 const PAGE_MODULES = groq`
   _type,
   _key,
   ${MODULE_STANDARD_TEXT},
+  ${MODULE_HERO}
 `
 
 const pageQuery = groq`
@@ -96,6 +111,12 @@ const pageQuery = groq`
   'slug': slug.current,
   title,
   'modules': pageComponentList[] {
+    ${PAGE_MODULES}
+  }
+`
+
+const homeQuery = groq`
+  'modules': modules[] {
     ${PAGE_MODULES}
   }
 `
@@ -134,3 +155,11 @@ export const QUERY_PAGE = (slug) => groq`*[
 ][0] {
   ${pageQuery}
 }`
+
+export const QUERY_HOME = groq`
+  *[_type == 'home' &&
+  !(_id in path("drafts.**"))] {
+    ${homeQuery}
+  }[0]
+`
+
