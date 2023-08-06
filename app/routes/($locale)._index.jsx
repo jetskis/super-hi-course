@@ -60,25 +60,7 @@ export default function Homepage() {
         </div>
         {/* Let's make sure to remove the 80px from the sticky top */}
         <div className='min-h-[calc(100vh-120px)] w-screen'>
-          {/* 2UP Module */}
-          
-          {/* VALUE PROPS */}
-          <section className='p-4 text-center 800:py-20'>
-            <div className='grid grid-cols-3 gap-4 max-w-[900px] mx-auto'>
-              <div className='col-span-1'>
-                <h4 className='text-mono-22 mb-5'>Free Shipping</h4>
-                <p>All orders of $89 or more qualify for free shipping. No promotional code needed.</p>
-              </div>
-              <div className='col-span-1'>
-                <h4 className='text-mono-22 mb-5'>Lifetime Guarantee</h4>
-                <p>Free replacement for any quality issues you experience with our bags.</p>
-              </div>
-              <div className='col-span-1'>
-                <h4 className='text-mono-22 mb-5'>Free Returns </h4>
-                <p>If you don’t love your order, return it within 30 days & shipping is on us.</p>
-              </div>
-            </div>
-          </section>
+
           {/* SHOPPING MODULE */}
           <section className='p-4 800:px-8 800:py-20'>
             <div className='grid grid-cols-2 gap-4'>
@@ -163,24 +145,6 @@ export default function Homepage() {
           {/* IMAGE or VIDEO */}
           <section>
             <div className='aspect-video w-full bg-primary-green/60' />
-          </section>
-          {/* FAQ */}
-          <section className='p-4 800:px-8 800:py-20 1200:py-40 text-left'>
-            <div className='max-w-[1000px] mx-auto'>
-              <h3 className='text-mono-100 my-2'>FAQ</h3>
-              <button className='py-4 inline-flex justify-between my-2 text-mono-36 border-b text-left'>
-                <span>Can you buy this even if you don't have upcoming travel plans?</span>
-                <span>+</span>
-              </button>
-              <button className='py-4 inline-flex justify-between my-2 text-mono-36 border-b text-left'>
-                <span>Can you buy this even if you don't have upcoming travel plans?</span>
-                <span>+</span>
-              </button>
-              <button className='py-4 inline-flex justify-between my-2 text-mono-36 border-b text-left'>
-                <span>Can you buy this even if you don't have upcoming travel plans?</span>
-                <span>+</span>
-              </button>
-            </div>
           </section>
         </div>
       </>

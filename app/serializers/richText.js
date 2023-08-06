@@ -48,19 +48,19 @@ const BlockRender = props => {
 	} else if (style === 'h3') {
 		return <h3 className='text-mono-36 font-mono'>{props.children}</h3>;
 	} else if (style === 'h4') {
-		return <h4 className='text-24 leading-29 font-mono'>{props.children}</h4>;
+		return <h4 className='text-mono-18 mb-3 font-mono'>{props.children}</h4>;
 	} else if (style === 'h5') {
 		return <h5 className='text-mono-14 uppercase my-2  font-mono'>{props.children}</h5>;
 	} else if (style === 'normal') {
-		return <p className="text-15 leading-21 my-2 font-plaid">{props.children}</p>;
+		return <p className="text-mono-14 my-2">{props.children}</p>;
 	} else if (style === 'script') {
-		return <p className="text-14 800:text-18 800:leading-24 font-plaid">{props.children}</p>;
+		return <p className="text-14 800:text-18 800:leading-24">{props.children}</p>;
 	} else if (style === 'p2') {
-		return <p className="text-14 leading-16 800:text-18 800:leading-24 font-plaid">{props.children}</p>;
+		return <p className="text-14 leading-16 800:text-18 800:leading-24">{props.children}</p>;
 	}  else if (style === 'p-caption') {
-		return <p className="text-18 800:text-28 800:leading-38 font-plaid">{props.children}</p>;
+		return <p className="text-18 800:text-28 800:leading-38">{props.children}</p>;
 	} else if (style === 'p3') {
-		return <p className="text-12 800:text-14 font-plaid">{props.children}</p>;
+		return <p className="text-12 800:text-14">{props.children}</p>;
 	}
 
 	// Fall back to default handling

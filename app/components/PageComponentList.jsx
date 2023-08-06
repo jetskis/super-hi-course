@@ -1,9 +1,13 @@
 import React from 'react';
 
 import { Hero } from '~/components/sharable/hero'
+import { ValueProps } from '~/components/sharable/valueProps'
+import { Faqs } from '~/components/sharable/faqs'
 
 const COMPONENTS = {
-	'module.hero': Hero
+	'module.hero': Hero,
+	'module.valueProps': ValueProps,
+	'module.faqs': Faqs,
 };
 
 const PageComponentList = ({components = [], componentProps = {}}) => {

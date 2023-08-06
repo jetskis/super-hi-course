@@ -90,7 +90,31 @@ const MODULE_HERO = groq`
   }
 `
 
+const MODULE_VALUE_PROPS = groq`
+  (_type == 'module.valueProps') => {
+    'bgColor': bgColor.hex,
+    values[] {
+      _key,
+      text[] {
+        ${richText}
+      }
+    }
+  }
+`
 
+const MODULE_FAQS = groq`
+  (_type == 'module.faqs') => {
+    'bgColor': bgColor.hex,
+    title,
+    faqList[]-> {
+      question,
+      answer[] {
+        ${richText}
+      },
+      _id
+    }
+  }
+`
 
 const MODULES = groq`
   _type,
@@ -103,7 +127,9 @@ const PAGE_MODULES = groq`
   _type,
   _key,
   ${MODULE_STANDARD_TEXT},
-  ${MODULE_HERO}
+  ${MODULE_HERO},
+  ${MODULE_VALUE_PROPS},
+  ${MODULE_FAQS}
 `
 
 const pageQuery = groq`
