@@ -2,9 +2,9 @@ import {HomeIcon} from '@sanity/icons'
 import {defineField} from 'sanity'
 
 export default defineField({
-  name: 'home',
+  name: 'faq',
   type: 'document',
-  title: 'Home',
+  title: 'FAQ',
   icon: HomeIcon,
   groups: [
     {
@@ -20,36 +20,28 @@ export default defineField({
   fields: [
     // Title
     defineField({
-      name: 'title',
-      title: 'Title',
-      description: 'Internal Use Only',
+      name: 'question',
+      title: 'Question',
       type: 'string',
       validation: (Rule) => Rule.required(),
       group: 'editorial',
     }),
-    // Modules
+
     defineField({
-      name: 'modules',
-      title: 'Modules',
-      type: 'pageComponentList',
+      name: 'answer',
+      title: 'Answer',
+      type: 'richText',
+      validation: (Rule) => Rule.required(),
       group: 'editorial',
-    }),
-    // SEO
-    defineField({
-      name: 'seo',
-      title: 'SEO',
-      type: 'seo',
-      group: 'seo',
     }),
   ],
   preview: {
     select: {
-      title: 'title',
+      title: 'question',
     },
     prepare({ title}) {
       return {
-        // media: icon,
-        subtitle: 'Index',
+        subtitle: 'FAQ',
         title
       }
     },

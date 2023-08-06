@@ -16,6 +16,7 @@ import collection from './documents/collection'
 import colorType from './documents/colorType'
 import home from './documents/home'
 import page from './documents/page'
+import faq from './documents/faq'
 import product from './documents/product'
 import productVariant from './documents/productVariant'
 import theme from './documents/theme'
@@ -25,6 +26,7 @@ const documents = [
   colorType,
   home,
   page,
+  faq,
   product,
   productVariant,
   theme
@@ -73,7 +75,6 @@ import moduleImage from './objects/module/image'
 import moduleImages from './objects/module/images'
 import moduleProduct from './objects/module/product'
 import moduleProducts from './objects/module/products'
-import moduleHero from './objects/module/hero'
 import moduleStandardText from './objects/module/standardText'
 import placeholderString from './objects/placeholderString'
 import productHotspots from './objects/productHotspots'
@@ -81,6 +82,11 @@ import productOption from './objects/productOption'
 import productWithVariant from './objects/productWithVariant'
 import proxyString from './objects/proxyString'
 import seo from './objects/seo'
+
+// SUPERHI
+import moduleHero from './objects/module/hero'
+import moduleFAQs from './objects/module/faqModule'
+import moduleValueProps from './objects/module/valueProps'
 
 import shopifyCollection from './objects/shopifyCollection'
 import shopifyCollectionRule from './objects/shopifyCollectionRule'
@@ -99,7 +105,10 @@ const objects = [
   moduleCallToAction,
   moduleImage,
   moduleImages,
+  // SUPERHI
   moduleHero,
+  moduleFAQs,
+  moduleValueProps,
 
   moduleProduct,
   moduleProducts,
