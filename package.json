@@ -17,7 +17,7 @@
   "dependencies": {
     "@headlessui/react": "^1.7.13",
     "@remix-run/node": "^1.14.1",
-    "@remix-run/react": "^1.19.2",
+    "@remix-run/react": "^1.19.3",
     "@sanity/block-content-to-react": "^3.0.0",
     "@sanity/client": "^5.2.2",
     "@shopify/cli": "^3.48.1",
