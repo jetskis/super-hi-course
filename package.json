@@ -21,7 +21,7 @@
     "@sanity/block-content-to-react": "^3.0.0",
     "@sanity/client": "^5.2.2",
     "@shopify/cli": "^3.48.1",
-    "@shopify/cli-hydrogen": "^5.1.1",
+    "@shopify/cli-hydrogen": "^5.1.2",
     "@shopify/hydrogen": "^2023.7.1",
     "@shopify/remix-oxygen": "^1.1.2",
     "classnames": "^2.3.2",

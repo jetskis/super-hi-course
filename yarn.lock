@@ -2797,7 +2797,7 @@
   resolved "https://registry.yarnpkg.com/@sanity/image-url/-/image-url-0.140.22.tgz#7a65f56bb751f7b1c5dfacfadd34ee10fc4f0fde"
   integrity sha512-CAmQZnj+KM7FSEYiWlIGDit072syicYuAw0w7R2ctMzHiZ4p9mE/g6dBnYqrqFUrw2J+GpJgPt+RVspKP8vdqA==
 
-"@shopify/cli-hydrogen@^5.1.1":
+"@shopify/cli-hydrogen@^5.1.2":
   version "5.1.2"
   resolved "https://registry.yarnpkg.com/@shopify/cli-hydrogen/-/cli-hydrogen-5.1.2.tgz#17b6ad0cb2bc86809c4173a2bf32775283f73a68"
   integrity sha512-CUawEe63C6kVhtF2qFiiTSWX1sdHTu3oaVXzsYXtRGxZH4H5YexTh6xbpdo893Nyoje/shyRoMWK3jN/reTllg==
