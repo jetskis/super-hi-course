@@ -1,7 +1,7 @@
 # Don't change the line below!
-#! oxygen_storefront_id: 1000002800
+#! oxygen_storefront_id: 1000003015
 
-name: Storefront 1000002800
+name: Storefront 1000003015
 on: [push]
 
 permissions:
@@ -42,7 +42,7 @@ jobs:
         id: deploy
         uses: shopify/oxygenctl-action@v4
         with:
-          oxygen_deployment_token: ${{ secrets.OXYGEN_DEPLOYMENT_TOKEN_1000002800 }}
+          oxygen_deployment_token: ${{ secrets.OXYGEN_DEPLOYMENT_TOKEN_1000003015 }}
           build_command: "HYDROGEN_ASSET_BASE_URL=$OXYGEN_ASSET_BASE_URL npm run build"
 
       # Create GitHub Deployment
