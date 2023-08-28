@@ -3,8 +3,15 @@ import { useLoaderData, Link, useLocation, useNavigation, useSearchParams, useMa
 import { json } from 'react-router'
 import {useKeenSlider} from 'keen-slider/react'
 
+import BlockContent from '@sanity/block-content-to-react'
+import Serializer from '~/serializers/richText'
+
 import { Menu } from '@headlessui/react'
 import 'keen-slider/keen-slider.min.css'
+
+import ProductComponentList from '~/components/ProductComponentList'
+
+import { QUERY_PRODUCT } from '~/queries/sanity'
 
 import {
   SHOPIFY_PRODUCT_QUERY
@@ -46,15 +53,20 @@ export const loader = async ({ params, context, request }) => {
       selectedOptions
     }
   })
+
   if (!product?.id) {
     throw new Response(null, { status: 404 })
   }
+
+  const sanityProduct = await context.sanity.fetch(QUERY_PRODUCT(handle))
+  console.log('sanityProduct', sanityProduct)
 
   const selectedVariant = product.selectedVariant ?? product?.variants?.nodes[0]
 
   return json({
     handle,
     product,
+    sanityProduct,
     selectedVariant,
     analytics: {
       pageType: 'product'
@@ -72,7 +84,7 @@ function PrintJson({data}) {
 }
 
 export default function ProductHandle() {
-  const { handle, product, selectedVariant, analytics } = useLoaderData()
+  const { handle, product, sanityProduct, selectedVariant, analytics } = useLoaderData()
   const { pathname, search }  = useLocation()
   const [ currentSearchParams ]  = useSearchParams()
   const navigation = useNavigation()
@@ -141,7 +153,9 @@ export default function ProductHandle() {
               className="text-xl font-600 text-32"
             />
             <div className='my-4'>
-              <p className='text-mono-18'>Equipped with smooth-rolling wheels and a retractable telescopic handle, the bag effortlessly glides along various surfaces, providing easy maneuverability through crowded airports, busy streets, or rugged terrain. The handle can be adjusted to different heights, allowing you to find the most comfortable position for pulling the bag.</p>
+              {sanityProduct.body && (
+                <BlockContent blocks={sanityProduct.body} serializers={Serializer} />
+              )}
             </div>
             <div className='my-8'>
               <h4 className='text-mono-14 mb-4'>Sizes:</h4>
@@ -182,23 +196,7 @@ export default function ProductHandle() {
 
         
       </div>
-      {/* VALUE PROPS */}
-      <section className='p-4 text-center 800:py-20'>
-        <div className='grid grid-cols-3 gap-4 max-w-[900px] mx-auto'>
-          <div className='col-span-1'>
-            <h4 className='text-mono-22 mb-5'>Free Shipping</h4>
-            <p>All orders of $89 or more qualify for free shipping. No promotional code needed.</p>
-          </div>
-          <div className='col-span-1'>
-            <h4 className='text-mono-22 mb-5'>Lifetime Guarantee</h4>
-            <p>Free replacement for any quality issues you experience with our bags.</p>
-          </div>
-          <div className='col-span-1'>
-            <h4 className='text-mono-22 mb-5'>Free Returns </h4>
-            <p>If you don’t love your order, return it within 30 days & shipping is on us.</p>
-          </div>
-        </div>
-      </section>
+      {sanityProduct.modules && (<ProductComponentList components={sanityProduct.modules} />)}
       {/* BENEFITS */}
       <section className='p-4 800:px-8 800:py-20 bg-primary-green/10'>
         <div className='max-w-[90%] mx-auto'>

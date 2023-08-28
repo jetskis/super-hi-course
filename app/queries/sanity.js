@@ -122,6 +122,13 @@ const MODULES = groq`
   ${MODULE_STANDARD_TEXT},
   ${MODULE_HERO}
 `
+const PRODUCT_MODULES = groq`
+  _type,
+  _key,
+  ${MODULE_STANDARD_TEXT},
+  ${MODULE_VALUE_PROPS},
+  ${MODULE_FAQS}
+`
 
 const PAGE_MODULES = groq`
   _type,
@@ -152,8 +159,11 @@ const productQuery = groq`
   'slug': store.slug.current,
   title,
   images,
+  body[] {
+    ${richText}
+  },
   modules[] {
-    ${MODULES}
+    ${PRODUCT_MODULES}
   }
 `
 

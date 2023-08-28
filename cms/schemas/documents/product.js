@@ -10,6 +10,7 @@ const GROUPS = [
   {
     name: 'editorial',
     title: 'Editorial',
+    default: true,
   },
   {
     name: 'shopifySync',
@@ -49,12 +50,25 @@ export default defineType({
       type: 'proxyString',
       options: {field: 'store.title'},
     }),
+
     // Slug (proxy)
     defineField({
       name: 'slugProxy',
       title: 'Slug',
       type: 'proxyString',
       options: {field: 'store.slug.current'},
+    }),
+    defineField({
+      name: 'body',
+      title: 'Body',
+      type: 'richText',
+      group: 'editorial',
+    }),
+    defineField({
+      name: 'modules',
+      title: 'Modules',
+      type: 'productComponentList',
+      group: 'editorial',
     }),
     defineField({
       name: 'store',
