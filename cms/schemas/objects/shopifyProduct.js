@@ -31,6 +31,21 @@ export default defineField({
     },
   ],
   fields: [
+    // Variants
+    defineField({
+      fieldset: 'variants',
+      name: 'variants',
+      title: 'Variants',
+      type: 'array',
+      of: [
+        {
+          title: 'Variant',
+          type: 'reference',
+          weak: true,
+          to: [{type: 'productVariant'}],
+        },
+      ],
+    }),
     // Created at
     defineField({
       fieldset: 'status',
@@ -194,20 +209,6 @@ export default defineField({
         },
       ],
     }),
-    // Variants
-    defineField({
-      fieldset: 'variants',
-      name: 'variants',
-      title: 'Variants',
-      type: 'array',
-      of: [
-        {
-          title: 'Variant',
-          type: 'reference',
-          weak: true,
-          to: [{type: 'productVariant'}],
-        },
-      ],
-    }),
+
   ],
 })

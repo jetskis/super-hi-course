@@ -169,17 +169,23 @@ const productQuery = groq`
     ...,
     variants[]-> {
       ...,
-      'pattern': pattern[0] {
+      'pattern': pattern-> {
         _type,
         _key,
-        _type == 'color' => {
-          'color': hex,
-        },
-        _type == 'image' => {
-          'image': asset-> {
-            ...
+        ...,
+        'colorType': colorType[0] {
+          _type,
+          _key,
+          _type == 'color' => {
+            'color': hex,
+          },
+          _type == 'module.image' => {
+            'image': image.asset-> {
+              ...
+            }
           }
         }
+        
       }
     }
   }

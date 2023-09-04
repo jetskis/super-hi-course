@@ -44,18 +44,9 @@ export default defineType({
     defineField({
       title: 'Pattern',
       name: 'pattern',
-      type: 'array',
+      type: 'reference',
+      to: { type: 'colorType' },
       group: 'editorial',
-      of: [{
-        type: 'color',
-        name: 'color',
-        title: 'Color'
-      }, {
-        type: 'image',
-        name: 'image',
-        title: 'Image'
-      }],
-      validation: Rule => Rule.required().max(1),
     }),
     // Shopify product variant
     defineField({

@@ -59,7 +59,6 @@ export const loader = async ({ params, context, request }) => {
   }
 
   const sanityProduct = await context.sanity.fetch(QUERY_PRODUCT(handle))
-
   const selectedVariant = product.selectedVariant ?? product?.variants?.nodes[0]
 
   return json({
@@ -174,6 +173,7 @@ export default function ProductHandle() {
                     const matchedPattern = sanityProduct.store.variants.find(variant => {
                       return variant.store.title == value
                     })
+                    console.log('matchedPattern', matchedPattern.pattern.colorType)
                     optionParams.set(name, value)
                     return (
                       /* Use the `active` state to conditionally style the active item. */
@@ -181,9 +181,9 @@ export default function ProductHandle() {
                           key={value}
                           preventScrollReset
                           style={{
-                            backgroundImage: matchedPattern.pattern?.image ? `url(${matchedPattern.pattern?.image?.url})` : 'none',
+                            backgroundImage: matchedPattern.pattern?.colorType?.image ? `url(${matchedPattern.pattern?.colorType?.image?.url})` : 'none',
                             backgroundSize: 'cover',
-                            backgroundColor: matchedPattern.pattern?.color,
+                            backgroundColor: matchedPattern.pattern?.colorType?.color,
                           }}
                           aria-label={`${name}: ${value}`}
                           to={`${pathname}?${optionParams.toString()}`}
