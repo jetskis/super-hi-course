@@ -70,6 +70,7 @@ export default defineType({
       type: 'productComponentList',
       group: 'editorial',
     }),
+ 
     defineField({
       name: 'store',
       title: 'Shopify',

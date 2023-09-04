@@ -11,6 +11,10 @@ export default defineType({
   icon: CopyIcon,
   groups: [
     {
+      name: 'editorial',
+      title: 'Editorial',
+    },
+    {
       name: 'shopifySync',
       title: 'Shopify sync',
       icon: ShopifyIcon,
@@ -36,6 +40,22 @@ export default defineType({
       name: 'titleProxy',
       type: 'proxyString',
       options: {field: 'store.title'},
+    }),
+    defineField({
+      title: 'Pattern',
+      name: 'pattern',
+      type: 'array',
+      group: 'editorial',
+      of: [{
+        type: 'color',
+        name: 'color',
+        title: 'Color'
+      }, {
+        type: 'image',
+        name: 'image',
+        title: 'Image'
+      }],
+      validation: Rule => Rule.required().max(1),
     }),
     // Shopify product variant
     defineField({

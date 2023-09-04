@@ -97,7 +97,7 @@ export default defineField({
     defineField({
       name: 'price',
       title: 'Price',
-      type: 'string',
+      type: 'number',
     }),
     // Compare at price
     defineField({

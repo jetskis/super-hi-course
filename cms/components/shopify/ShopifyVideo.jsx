@@ -21,7 +21,6 @@ export const ShopifyVideo = (props) => {
       .then(res => res.json())
       .then(json => {
         if (!json.error) {
-          console.log('json??', json)
           onChange([
             set(json.data.url, ['url']),
           //   set(json.data.image.height, ['height']),

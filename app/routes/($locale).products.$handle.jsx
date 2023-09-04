@@ -59,7 +59,6 @@ export const loader = async ({ params, context, request }) => {
   }
 
   const sanityProduct = await context.sanity.fetch(QUERY_PRODUCT(handle))
-  console.log('sanityProduct', sanityProduct)
 
   const selectedVariant = product.selectedVariant ?? product?.variants?.nodes[0]
 
@@ -165,22 +164,31 @@ export default function ProductHandle() {
               </div>
             </div>
             <div className='w-full font-600 my-6 uppercase text-mono-20'>
+              <h4 className='text-mono-14 mb-4'>Colors: <span className='font-600'>{selectedVariant.title}</span></h4>
               <div className='flex gap-4' onChange={(e) => alert(e.currentTarget.value)}>    
                 {product.options.map(({ name, values }) => {
                   const currentOptionValue = searchParams.get(name)
                   return values.map((value) => {
                     const optionParams = new URLSearchParams(search);
                     const isSelected = currentOptionValue === value
+                    const matchedPattern = sanityProduct.store.variants.find(variant => {
+                      return variant.store.title == value
+                    })
                     optionParams.set(name, value)
                     return (
                       /* Use the `active` state to conditionally style the active item. */
                         <Link
                           key={value}
                           preventScrollReset
+                          style={{
+                            backgroundImage: matchedPattern.pattern?.image ? `url(${matchedPattern.pattern?.image?.url})` : 'none',
+                            backgroundSize: 'cover',
+                            backgroundColor: matchedPattern.pattern?.color,
+                          }}
                           aria-label={`${name}: ${value}`}
                           to={`${pathname}?${optionParams.toString()}`}
                           className={`block w-10 h-10 rounded-full border-black ${
-                            isSelected ? 'bg-black' : 'bg-primary-green'
+                            isSelected ? 'opacity-100 scale-[1.1]' : 'opacity-25'
                           }`}
                         >
                           <span className='absolute opacity-0'>{value}</span>
