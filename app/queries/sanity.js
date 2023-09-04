@@ -165,6 +165,13 @@ const productQuery = groq`
   modules[] {
     ${PRODUCT_MODULES}
   },
+  associatedProducts[]-> {
+    _id,
+    store {
+      title,
+      'slug': slug.current
+    }
+  },
   store {
     ...,
     variants[]-> {

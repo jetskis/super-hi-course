@@ -13,6 +13,10 @@ const GROUPS = [
     default: true,
   },
   {
+    name: 'extendedProducts',
+    title: 'Extended products',
+  },
+  {
     name: 'shopifySync',
     title: 'Shopify sync',
     icon: ShopifyIcon,
@@ -69,6 +73,14 @@ export default defineType({
       title: 'Modules',
       type: 'productComponentList',
       group: 'editorial',
+    }),
+
+    defineField({
+      name: 'associatedProducts',
+      title: 'Associated products',
+      type: 'array',
+      of: [{type: 'reference', to: [{type: 'product'}]}],
+      group: 'extendedProducts',
     }),
  
     defineField({

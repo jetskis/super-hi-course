@@ -2,6 +2,7 @@ import { useEffect, Fragment } from 'react'
 import { useLoaderData, Link, useLocation, useNavigation, useSearchParams, useMatches, useFetcher, useFetchers } from '@remix-run/react'
 import { json } from 'react-router'
 import {useKeenSlider} from 'keen-slider/react'
+import cx from 'classnames'
 
 import BlockContent from '@sanity/block-content-to-react'
 import Serializer from '~/serializers/richText'
@@ -156,11 +157,27 @@ export default function ProductHandle() {
               )}
             </div>
             <div className='my-8'>
-              <h4 className='text-mono-14 mb-4'>Sizes:</h4>
-              <div className='flex gap-4'>
-                <Link to='/products/40l-bag' className='p-4 px-8 bg-primary-green/90 rounded-[20px]'>40L Bag</Link>
-                <Link to='/products/60l-bag' className='p-4 px-8 bg-primary-green/50 rounded-[20px]'>60L Bag</Link>
-              </div>
+              {sanityProduct.associatedProducts && (
+                <>
+                  <h4 className='text-mono-14 mb-4'>Sizes:</h4>
+                  <div className='flex gap-4'>
+                    {sanityProduct.associatedProducts.map((product) => (
+                      <Link key={product.store.slug} to={`/products/${product.store.slug}`} 
+                        className={cx(
+                          'p-4 px-8 bg-primary-green/90 rounded-[20px]',
+                          {
+                            'opacity-50': product.store.slug !== handle
+                          }
+                        )}>
+                        {product.store.title}
+                      </Link>
+                    ))}
+                    {/* <Link to='/products/40l-bag' className='p-4 px-8 bg-primary-green/90 rounded-[20px]'>40L Bag</Link>
+                    <Link to='/products/60l-bag' className='p-4 px-8 bg-primary-green/50 rounded-[20px]'>60L Bag</Link> */}
+                  </div>
+                </>
+              )}
+              
             </div>
             <div className='w-full font-600 my-6 uppercase text-mono-20'>
               <h4 className='text-mono-14 mb-4'>Colors: <span className='font-600'>{selectedVariant.title}</span></h4>
@@ -173,7 +190,6 @@ export default function ProductHandle() {
                     const matchedPattern = sanityProduct.store.variants.find(variant => {
                       return variant.store.title == value
                     })
-                    console.log('matchedPattern', matchedPattern.pattern.colorType)
                     optionParams.set(name, value)
                     return (
                       /* Use the `active` state to conditionally style the active item. */

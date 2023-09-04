@@ -1855,6 +1855,9 @@ select {
 .opacity-25 {
   opacity: 0.25;
 }
+.opacity-50 {
+  opacity: 0.5;
+}
 .outline {
   outline-style: solid;
 }
