@@ -27,7 +27,6 @@ export async function loader({request, params, context}) {
 
 
   const sanityPage = await context.sanity.fetch(QUERY_PAGE(params.pageHandle))
-  console.log('sanityPage', sanityPage)
 
   if (!page && !sanityPage) {
     throw new Response(null, {status: 404});

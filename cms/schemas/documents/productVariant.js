@@ -13,6 +13,7 @@ export default defineType({
     {
       name: 'editorial',
       title: 'Editorial',
+      default: true
     },
     {
       name: 'shopifySync',
@@ -46,6 +47,12 @@ export default defineType({
       name: 'pattern',
       type: 'reference',
       to: { type: 'colorType' },
+      group: 'editorial',
+    }),
+    defineField({
+      title: 'Main Image',
+      name: 'mainImage',
+      type: 'image',
       group: 'editorial',
     }),
     // Shopify product variant

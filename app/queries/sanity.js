@@ -90,6 +90,15 @@ const MODULE_HERO = groq`
   }
 `
 
+const MODULE_IMAGE = groq`
+  (_type == 'module.image') => {
+    'image': image.asset-> {
+      metadata,
+      url
+    }
+  }
+`
+
 const MODULE_VALUE_PROPS = groq`
   (_type == 'module.valueProps') => {
     'bgColor': bgColor.hex,
@@ -99,6 +108,13 @@ const MODULE_VALUE_PROPS = groq`
         ${richText}
       }
     }
+  }
+`
+
+const MODULE_BIG_BENEFITS = groq`
+  (_type == 'module.bigBenefits') => {
+    'bgColor': bgColor.hex,
+    values[]
   }
 `
 
@@ -127,7 +143,9 @@ const PRODUCT_MODULES = groq`
   _key,
   ${MODULE_STANDARD_TEXT},
   ${MODULE_VALUE_PROPS},
-  ${MODULE_FAQS}
+  ${MODULE_FAQS},
+  ${MODULE_IMAGE},
+  ${MODULE_BIG_BENEFITS}
 `
 
 const PAGE_MODULES = groq`
@@ -176,6 +194,10 @@ const productQuery = groq`
     ...,
     variants[]-> {
       ...,
+      'mainImage': mainImage.asset-> {
+        url,
+        _id,
+      },
       'pattern': pattern-> {
         _type,
         _key,

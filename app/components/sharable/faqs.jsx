@@ -18,11 +18,11 @@ export const Faqs = ({
       <div className='max-w-[1000px] mx-auto'>
         {faqList?.map(faq => (
           <div key={faq._id} className='w-full'>
-            <Disclosure>
+            <Disclosure className='w-full'>
               {({ open }) => (
                 /* Use the `open` state to conditionally change the direction of an icon. */
                 <>
-                  <Disclosure.Button className='py-4 inline-flex justify-between my-2 text-mono-36 border-b text-left'>
+                  <Disclosure.Button className='py-4 inline-flex justify-between my-2 text-mono-36 border-b w-full text-left'>
                     {faq.question}
                     <span>+</span>
                   </Disclosure.Button>

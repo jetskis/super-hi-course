@@ -60,13 +60,18 @@ export const loader = async ({ params, context, request }) => {
   }
 
   const sanityProduct = await context.sanity.fetch(QUERY_PRODUCT(handle))
+  // console.log('sanity product', sanityProduct.store.variants)
   const selectedVariant = product.selectedVariant ?? product?.variants?.nodes[0]
+  const sanityVariant = sanityProduct.store.variants.find(variant => {
+    return variant.store.title === selectedVariant.title
+  })
 
   return json({
     handle,
     product,
     sanityProduct,
     selectedVariant,
+    sanityVariant,
     analytics: {
       pageType: 'product'
     }
@@ -83,7 +88,7 @@ function PrintJson({data}) {
 }
 
 export default function ProductHandle() {
-  const { handle, product, sanityProduct, selectedVariant, analytics } = useLoaderData()
+  const { handle, product, sanityProduct, sanityVariant, selectedVariant, analytics } = useLoaderData()
   const { pathname, search }  = useLocation()
   const [ currentSearchParams ]  = useSearchParams()
   const navigation = useNavigation()
@@ -140,7 +145,7 @@ export default function ProductHandle() {
       <div className='relative w-full p-4 grid grid-cols-12 mt-[100px]'>
         <div className='relative h-[calc(100vh-174px)] col-span-6 '>
           <div className=''>
-            {product.media?.nodes?.length > 1 && (<ImageSlider images={product.media?.nodes} />)}
+            {sanityVariant?.mainImage && (<ImageSlider images={[sanityVariant.mainImage]} />)}
           </div>
           
         </div>
@@ -221,53 +226,6 @@ export default function ProductHandle() {
         
       </div>
       {sanityProduct.modules && (<ProductComponentList components={sanityProduct.modules} />)}
-      {/* BENEFITS */}
-      <section className='p-4 800:px-8 800:py-20 bg-primary-green/10'>
-        <div className='max-w-[90%] mx-auto'>
-          <div className='flex my-8 800:my-20 text-left'>
-            <div className='max-w-[70%]'>
-              <h3 className='text-mono-64'>Global entry level comforts</h3>
-            </div>
-          </div>
-          <div className='flex my-8 800:my-20 w-full  justify-end text-right'>
-            <div className='max-w-[70%]'>
-              <h3 className='text-mono-64'>TSA Approved</h3>
-            </div>
-          </div>
-          <div className='flex my-8 800:my-20 w-full text-left'>
-            <div className='max-w-[70%]'>
-              <h3 className='text-mono-64'>Smooth Wheels</h3>
-            </div>
-          </div>
-          <div className='flex my-8 800:my-20 w-full justify-end text-right'>
-            <div className='max-w-[70%]'>
-              <h3 className='text-mono-64'>Lightweight &amp; Stylish</h3>
-            </div>
-          </div>
-        </div>
-      </section>
-      {/* IMAGE or VIDEO */}
-      <section>
-        <div className='aspect-video w-full bg-primary-green/60' />
-      </section>
-      {/* FAQ */}
-      <section className='p-4 800:px-8 800:py-20 1200:py-40 text-left'>
-        <div className='max-w-[1000px] mx-auto'>
-          <h3 className='text-mono-100 my-2'>FAQ</h3>
-          <button className='py-4 inline-flex justify-between my-2 text-mono-36 border-b text-left'>
-            <span>Can you buy this even if you don't have upcoming travel plans?</span>
-            <span>+</span>
-          </button>
-          <button className='py-4 inline-flex justify-between my-2 text-mono-36 border-b text-left'>
-            <span>Can you buy this even if you don't have upcoming travel plans?</span>
-            <span>+</span>
-          </button>
-          <button className='py-4 inline-flex justify-between my-2 text-mono-36 border-b text-left'>
-            <span>Can you buy this even if you don't have upcoming travel plans?</span>
-            <span>+</span>
-          </button>
-        </div>
-      </section>
     </div>
   )
 }
@@ -292,9 +250,9 @@ const ImageSlider = ({ images }) => {
 	})
   return (
     <div ref={sliderRef} className="keen-slider h-full w-full">
-      {images.map(({ image }) => {
+      {images.map((image) => {
         return (
-          <div key={image.id} className="keen-slider__slide">
+          <div key={image._id} className="keen-slider__slide">
             <img src={image.url} className='w-full h-full object-contain' />
           </div>
         )

@@ -87,6 +87,7 @@ import seo from './objects/seo'
 import moduleHero from './objects/module/hero'
 import moduleFAQs from './objects/module/faqModule'
 import moduleValueProps from './objects/module/valueProps'
+import moduleBigBenefits from './objects/module/bigBenefits'
 
 import shopifyCollection from './objects/shopifyCollection'
 import shopifyCollectionRule from './objects/shopifyCollectionRule'
@@ -109,6 +110,7 @@ const objects = [
   moduleHero,
   moduleFAQs,
   moduleValueProps,
+  moduleBigBenefits,
 
   moduleProduct,
   moduleProducts,
