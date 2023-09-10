@@ -3,11 +3,13 @@ import React from 'react';
 import { Hero } from '~/components/sharable/hero'
 import { ValueProps } from '~/components/sharable/valueProps'
 import { Faqs } from '~/components/sharable/faqs'
+import { ProductGrid } from '~/components/sharable/productGrid'
 
 const COMPONENTS = {
 	'module.hero': Hero,
 	'module.valueProps': ValueProps,
 	'module.faqs': Faqs,
+	'module.productGrid': ProductGrid
 };
 
 const PageComponentList = ({components = [], componentProps = {}}) => {

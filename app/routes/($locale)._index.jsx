@@ -15,7 +15,7 @@ export async function loader({context}) {
   const articles = await context.storefront.query(ARTICLES_QUERY)
 
   const sanityPage = await context.sanity.fetch(QUERY_HOME)
-
+  console.log('sanity page', sanityPage)
   // We're not covering accounts/auth in this class
   // const customerAccessToken = await context.session.get('customerAccessToken');
   // const customer = customerAccessToken ? 

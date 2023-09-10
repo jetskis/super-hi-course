@@ -13,6 +13,7 @@ export default {
 		{ type: 'module.valueProps' },
 		{ type: 'module.faqs' },
 		{ type: 'module.image' },
+		{ type: 'module.productGrid' },
 		{ type: 'module.standardText' },
 	],
 };

@@ -118,6 +118,22 @@ const MODULE_BIG_BENEFITS = groq`
   }
 `
 
+const MODULE_PRODUCT_GRID = groq`
+  (_type == 'module.productGrid') => {
+    'bgColor': bgColor.hex,
+    products[] {
+      _key,
+      _type,
+      'product': product-> {
+        store,
+      },
+      'productVariant': productVariant-> {
+        store,
+      }
+    }
+  }
+`
+
 const MODULE_FAQS = groq`
   (_type == 'module.faqs') => {
     'bgColor': bgColor.hex,
@@ -153,6 +169,7 @@ const PAGE_MODULES = groq`
   _key,
   ${MODULE_STANDARD_TEXT},
   ${MODULE_HERO},
+  ${MODULE_PRODUCT_GRID},
   ${MODULE_VALUE_PROPS},
   ${MODULE_FAQS}
 `
