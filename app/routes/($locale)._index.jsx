@@ -59,10 +59,9 @@ export async function loader({context}) {
     }
   })
 
-  console.log('sanity modules', sanityModules)
-
   return {
     sanityPage,
+    sanityModules
   }
 }
 
@@ -78,13 +77,13 @@ export const handle = {
 export default function Homepage() {
 
   const fetcher = useFetcher();
-  const { sanityPage} = useLoaderData()
+  const { sanityPage, sanityModules } = useLoaderData()
 
   return (
     <div className='relative'>
       <>
         <div>
-          <PageComponentList components={sanityPage.modules} />
+          <PageComponentList components={sanityModules} />
         </div>
         {/* Let's make sure to remove the 80px from the sticky top */}
         <div className='min-h-[calc(100vh-120px)] w-screen'>
