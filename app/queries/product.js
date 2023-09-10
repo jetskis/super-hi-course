@@ -5,6 +5,43 @@
 *
 */
 
+
+export const SHOPIFY_PRODUCTS_QUERY = `#graphql
+  query product($ids: [ID!]!) {
+    nodes(ids: $ids) {
+      ... on Product {
+        id
+        title
+        handle
+        vendor
+        options {
+          name,
+          values
+        }
+        variants(first: 100) {
+          nodes {
+            id
+            title
+            availableForSale
+            price {
+              currencyCode
+              amount
+            }
+            compareAtPrice {
+              currencyCode
+              amount
+            }
+            selectedOptions {
+              name
+              value
+            }
+          }
+        }
+      }
+    }
+  }
+`
+
 export const SHOPIFY_PRODUCT_QUERY = `#graphql
   query product($handle: String!, $selectedOptions: [SelectedOptionInput!]!) {
     product(handle: $handle) {
