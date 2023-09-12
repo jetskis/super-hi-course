@@ -33,11 +33,6 @@ export async function loader({context}) {
     }
   })
 
-  console.log('fetched shopify', shopifyProducts)
-  shopifyProducts.nodes.forEach(product => {
-    console.log('product', product.variants)
-  })
-
   const sanityModules = sanityPage?.modules.map(module => {
     if (module._type === 'module.productGrid') {
       // Do something
@@ -88,66 +83,6 @@ export default function Homepage() {
         {/* Let's make sure to remove the 80px from the sticky top */}
         <div className='min-h-[calc(100vh-120px)] w-screen'>
 
-          {/* SHOPPING MODULE */}
-          <section className='p-4 800:px-8 800:py-20'>
-            <div className='grid grid-cols-2 gap-4'>
-              <div className='col-span-1'>
-                <div className='aspect-square bg-primary-green/60' />
-                <h3 className='text-mono-48 my-2'>40L</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                <div className='my-2'>
-                  <div className='flex my-4'>
-                    <span className='h-10 w-10 rounded-full block mr-2 bg-primary-green' />
-                    <span className='h-10 w-10 rounded-full block mr-2 bg-primary-green' />
-                    <span className='h-10 w-10 rounded-full block mr-2 bg-primary-green' />
-                  </div>
-                  <div>
-                    <button className='button primary small'>Add to Cart</button>
-                  </div>
-                </div>
-              </div>
-              <div className='col-span-1'>
-                <div className='aspect-square bg-primary-green/60' />
-                <h3 className='text-mono-48 my-2'>60L</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                <div className='my-2'>
-                  <div className='flex my-4'>
-                    <span className='h-10 w-10 rounded-full block mr-2 bg-primary-green' />
-                    <span className='h-10 w-10 rounded-full block mr-2 bg-primary-green' />
-                    <span className='h-10 w-10 rounded-full block mr-2 bg-primary-green' />
-                  </div>
-                  <div>
-                    <button className='button primary small'>Add to Cart</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-          {/* BENEFITS */}
-          <section className='p-4 800:px-8 800:py-20 bg-primary-green/10'>
-            <div className='max-w-[90%] mx-auto'>
-              <div className='flex my-8 800:my-20 text-left'>
-                <div className='max-w-[70%]'>
-                  <h3 className='text-mono-64'>Global entry level comforts</h3>
-                </div>
-              </div>
-              <div className='flex my-8 800:my-20 w-full  justify-end text-right'>
-                <div className='max-w-[70%]'>
-                  <h3 className='text-mono-64'>TSA Approved</h3>
-                </div>
-              </div>
-              <div className='flex my-8 800:my-20 w-full text-left'>
-                <div className='max-w-[70%]'>
-                  <h3 className='text-mono-64'>Smooth Wheels</h3>
-                </div>
-              </div>
-              <div className='flex my-8 800:my-20 w-full justify-end text-right'>
-                <div className='max-w-[70%]'>
-                  <h3 className='text-mono-64'>Lightweight &amp; Stylish</h3>
-                </div>
-              </div>
-            </div>
-          </section>
           {/* COLUMN MODULES */}
           <section className='p-4 800:px-8 800:py-20 '>
             <div className='grid grid-cols-2 gap-4 my-10 800:my-20 py-1'>
