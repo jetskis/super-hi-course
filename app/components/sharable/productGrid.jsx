@@ -16,13 +16,22 @@ const ProductCard = ({
   const shopifyDefaultVariant = shopify.variants.nodes.find(item => {
     return item.id === defaultVariant.store.gid
   })
-  const [activeVariant, setActiveVariant] = useState(shopifyDefaultVariant ? shopifyDefaultVariant : shopify?.variants?.nodes[0])
+  const [activeVariant, setActiveVariant] = useState(shopifyDefaultVariant ? {
+    sanity: defaultVariant,
+    ...shopifyDefaultVariant
+   } : {
+    sanity: product.store.variants[0],
+    ...shopify?.variants?.nodes[0]
+   })
   console.log('active variant', activeVariant)
   return (
     <div className='col-span-1'>
-      <div className='aspect-square bg-primary-green/60' />
-      <h3 className='text-mono-48 my-2'>{product?.store.title}</h3>
-      TEST
+      <div className='aspect-square bg-primary-green/60'>
+        {activeVariant?.sanity?.mainImage?.asset?.url && (
+          <img src={activeVariant?.sanity?.mainImage?.asset?.url} alt={activeVariant.sanity.title} />
+        )}
+      </div>
+      <h3 className='text-mono-48 my-2'>{product?.store.title} ${activeVariant.sanity.store.price}</h3>
       <div className='my-2'>
         <div className='flex my-4'>
           {product?.store?.variants?.map((variant, i) => {
@@ -38,7 +47,10 @@ const ProductCard = ({
                   const shopifyVariant = shopify.variants.nodes.find(item => {
                     return item.id === variant.store.gid
                   })
-                  setActiveVariant(shopifyVariant)
+                  setActiveVariant({
+                    sanity: variant,
+                    ...shopifyVariant
+                  })
                 }}
                 aria-label={`${variant.pattern.colorName}`}
                 className={cx('block w-10 h-10 mr-2 rounded-full border-black', {
@@ -57,6 +69,7 @@ const ProductCard = ({
             product={product} 
             selectedVariant={activeVariant} 
             // productAnalytics={analytics} 
+            qtySelector={false}
             variantId={activeVariant?.id} />
           {/* <button className='button primary small'>Add to Cart</button> */}
         </div>

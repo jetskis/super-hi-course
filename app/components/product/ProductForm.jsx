@@ -6,6 +6,7 @@ import useStore from '~/state/useStore'
 export function ProductForm({
   variantId,
   product,
+  qtySelector = true,
   selectedVariant,
   productAnalytics
 }) {
@@ -38,11 +39,13 @@ export function ProductForm({
         value={selectedLocale?.country ?? 'US'}
       />
       <input type="hidden" name="lines" value={JSON.stringify(lines)} />
-      <div className='flex justify-center border-2 rounded-[8px] w-1/2 items-center h-[60px]'>
-        <button type='button' onClick={() => quantity > 1 && setQuantity(quantity-1)} className='site-theme p-2 px-4'>-</button>
-        <input onChange={(e) => setQuantity(e.currentTarget.value)} defaultValue={quantity} min={1} max={100}  type='number' className='w-[80px] appearance-none text-mono-20 bg-transparent m-0 text-center border-none  h-[50px]' />
-        <button type='button' onClick={() => setQuantity(quantity+1)} className='site-theme p-2 px-4'>+</button>
-      </div>
+      {qtySelector && (
+        <div className='flex justify-center border-2 rounded-[8px] w-1/2 items-center h-[60px]'>
+          <button type='button' onClick={() => quantity > 1 && setQuantity(quantity-1)} className='site-theme p-2 px-4'>-</button>
+          <input onChange={(e) => setQuantity(e.currentTarget.value)} defaultValue={quantity} min={1} max={100}  type='number' className='w-[80px] appearance-none text-mono-20 bg-transparent m-0 text-center border-none  h-[50px]' />
+          <button type='button' onClick={() => setQuantity(quantity+1)} className='site-theme p-2 px-4'>+</button>
+        </div>
+      )}
       <button className="w-1/2 hover:bg-almost-black hover:text-white transition-colors duration-300 bg-primary-green text-black uppercase h-[60px] theme-add-button text-mono-20  px-6 text-center font-mono">
         <span className=''>add to bag</span>
       </button>

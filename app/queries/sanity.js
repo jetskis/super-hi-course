@@ -149,11 +149,22 @@ const MODULE_PRODUCT_GRID = groq`
           ...,
           variants[]-> {
             ...,
+            mainImage {
+              asset-> {
+                ...
+              }
+            },
             'pattern': pattern-> ${pattern}
           }
         },
       },
       'productVariant': productVariant-> {
+        ...,
+        mainImage {
+          asset-> {
+            ...
+          }
+        },
         store,
       }
     }
