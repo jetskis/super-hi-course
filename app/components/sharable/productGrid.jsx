@@ -10,10 +10,14 @@ import {
 
 const ProductCard = ({
   product,
+  defaultVariant,
   shopify
 }) => {
-  const [activeVariant, setActiveVariant] = useState(shopify?.variants?.nodes[0])
-  console.log('first variant', product.store.variants[0], activeVariant)
+  const shopifyDefaultVariant = shopify.variants.nodes.find(item => {
+    return item.id === defaultVariant.store.gid
+  })
+  const [activeVariant, setActiveVariant] = useState(shopifyDefaultVariant ? shopifyDefaultVariant : shopify?.variants?.nodes[0])
+  console.log('active variant', activeVariant)
   return (
     <div className='col-span-1'>
       <div className='aspect-square bg-primary-green/60' />
@@ -30,7 +34,12 @@ const ProductCard = ({
                   backgroundSize: 'cover',
                   backgroundColor: variant.pattern?.colorType?.color,
                 }}
-                onClick={() => setActiveVariant(shopify.variants.nodes[i])}
+                onClick={() => {
+                  const shopifyVariant = shopify.variants.nodes.find(item => {
+                    return item.id === variant.store.gid
+                  })
+                  setActiveVariant(shopifyVariant)
+                }}
                 aria-label={`${variant.pattern.colorName}`}
                 className={cx('block w-10 h-10 mr-2 rounded-full border-black', {
                   'opacity-100': activeVariant.id === variant.store.gid,
@@ -70,6 +79,7 @@ export const ProductGrid = ({
         <ProductCard 
           product={item.product} 
           shopify={item.shopify}
+          defaultVariant={item.productVariant}
           key={item._key} />
       )
     })}
