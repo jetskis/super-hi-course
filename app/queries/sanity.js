@@ -29,6 +29,26 @@ const richText = groq`
   }
 `
 
+const pattern = groq`
+  {
+    _type,
+    _key,
+    ...,
+    'colorType': colorType[0] {
+      _type,
+      _key,
+      _type == 'color' => {
+        'color': hex,
+      },
+      _type == 'module.image' => {
+        'image': image.asset-> {
+          ...
+        }
+      }
+    }
+  }
+`
+
 export const QUERY_THEME = groq`
   *[_type == 'settings'][0] {
     footer {
@@ -125,7 +145,13 @@ const MODULE_PRODUCT_GRID = groq`
       _key,
       _type,
       'product': product-> {
-        store,
+        store {
+          ...,
+          variants[]-> {
+            ...,
+            'pattern': pattern-> ${pattern}
+          }
+        },
       },
       'productVariant': productVariant-> {
         store,
@@ -215,24 +241,7 @@ const productQuery = groq`
         url,
         _id,
       },
-      'pattern': pattern-> {
-        _type,
-        _key,
-        ...,
-        'colorType': colorType[0] {
-          _type,
-          _key,
-          _type == 'color' => {
-            'color': hex,
-          },
-          _type == 'module.image' => {
-            'image': image.asset-> {
-              ...
-            }
-          }
-        }
-        
-      }
+      'pattern': pattern-> ${pattern}
     }
   }
 `
