@@ -23,12 +23,12 @@ const ProductCard = ({
     sanity: product.store.variants[0],
     ...shopify?.variants?.nodes[0]
    })
-  console.log('active variant', activeVariant)
+
   return (
     <div className='col-span-1'>
-      <div className='aspect-square bg-primary-green/60'>
+      <div className='aspect-square'>
         {activeVariant?.sanity?.mainImage?.asset?.url && (
-          <img src={activeVariant?.sanity?.mainImage?.asset?.url} alt={activeVariant.sanity.title} />
+          <img className='w-full object-cover' src={activeVariant?.sanity?.mainImage?.asset?.url} alt={activeVariant.sanity.title} />
         )}
       </div>
       <h3 className='text-mono-48 my-2'>{product?.store.title} ${activeVariant.sanity.store.price}</h3>

@@ -28,7 +28,7 @@ export default {
       description: 'Build complex menus from the menu area, assign them here to update the menu everywhere',
       type: 'reference',
       to: { type: 'header' },
-			validation: Rule => Rule.required()
+			// validation: Rule => Rule.required()
     },
     {
       name: 'footerMenu',
@@ -36,7 +36,7 @@ export default {
       description: 'Build complex menus from the module area, assign them here to update the menu everywhere',
       type: 'reference',
       to: { type: 'footer' },
-			validation: Rule => Rule.required()
+			// validation: Rule => Rule.required()
     },
     {
       name: 'cart',
@@ -44,24 +44,8 @@ export default {
       description: 'Create custom carts in preparation for high volume experiences, or merchandise difference products across storefronts.',
       type: 'reference',
       to: { type: 'cart' },
-			validation: Rule => Rule.required()
+			// validation: Rule => Rule.required()
     },
-    // {
-    //   name: 'filters',
-    //   title: 'Global Filters',
-    //   description: 'Filters inform the CLP experience, various automation happens depending on what level of collection you are on.',
-    //   type: 'reference',
-    //   to: { type: 'filter' },
-		// 	validation: Rule => Rule.required()
-    // },
-    // {
-    //   name: 'globalCollectionHeaders',
-    //   title: 'Global Collection Header',
-    //   description: 'Enables a global header on all collection pages.',
-    //   type: 'reference',
-    //   to: { type: 'globalCollectionHeader' },
-		// 	validation: Rule => Rule.required()
-    // }
   ],
   preview: {
     select: {
