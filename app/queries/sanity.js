@@ -283,9 +283,12 @@ export const QUERY_PAGE = (slug) => groq`*[
 }`
 
 export const QUERY_HOME = groq`
-  *[_type == 'home' &&
+  *[_type == 'theme' &&
+  launchDate <= now() &&
   !(_id in path("drafts.**"))] {
-    ${homeQuery}
+    homepage-> {
+      ${homeQuery}
+    }
   }[0]
 `
 

@@ -15,7 +15,9 @@ import PageComponentList from '~/components/PageComponentList'
 
 export async function loader({context}) {
 
-  const sanityPage = await context.sanity.fetch(QUERY_HOME)
+  const sanityData = await context.sanity.fetch(QUERY_HOME)
+  console.log('sanityData', sanityData)
+  const sanityPage = sanityData.homepage
   // console.log('sanity page', sanityPage)
 
   const productIds = []
