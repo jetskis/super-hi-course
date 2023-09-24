@@ -18,6 +18,7 @@ const hiddenDocTypes = (listItem) => {
     'media.tag',
     'page',
     'product',
+		'reusableModule',
     'productVariant',
 		'header',
 		'colorType',
@@ -70,6 +71,11 @@ export const structure = (S, context) => {
 						.title('Footers')
 						.schemaType('footer')
 						.child(S.documentTypeList('footer').title('Footers')),
+
+					S.listItem()
+						.title('Resuable Modules')
+						.schemaType('reusableModule')
+						.child(S.documentTypeList('reusableModule').title('Resuable Modules')),
 					S.listItem()
 						.title('Carts')
 						.schemaType('cart')

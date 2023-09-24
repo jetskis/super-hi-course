@@ -89,6 +89,7 @@ import moduleFAQs from './objects/module/faqModule'
 import moduleValueProps from './objects/module/valueProps'
 import moduleBigBenefits from './objects/module/bigBenefits'
 import moduleProductGrid from './objects/module/productGrid'
+import moduleReusableModule from './objects/module/reusableModule'
 
 import shopifyCollection from './objects/shopifyCollection'
 import shopifyCollectionRule from './objects/shopifyCollectionRule'
@@ -113,6 +114,7 @@ const objects = [
   moduleValueProps,
   moduleBigBenefits,
   moduleProductGrid,
+  moduleReusableModule,
 
   moduleProduct,
   moduleProducts,
@@ -136,14 +138,18 @@ const objects = [
 // site modules
 import productComponentList from './modules/productComponentList'
 import pageComponentList from './modules/pageComponentList'
+import reusableComponentList from './modules/reusableComponentList'
 import header from './modules/header'
 import footer from './modules/footer'
+import reusableModule from './modules/reusableModule'
 import cart from './modules/cart'
 
 const modules = [
   productComponentList,
   pageComponentList,
+  reusableComponentList,
   header,
+  reusableModule,
   footer,
   cart
 ]

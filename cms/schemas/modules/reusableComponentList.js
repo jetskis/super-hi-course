@@ -4,7 +4,7 @@ import Emoji from 'a11y-react-emoji';
 const Icon = () => <Emoji style={{fontSize: '1.5em'}} symbol="🚧" />;
 
 export default {
-	name: 'pageComponentList',
+	name: 'reusableComponentList',
 	title: 'Components',
 	icon: Icon,
 	type: 'array',
@@ -13,7 +13,6 @@ export default {
 		{ type: 'module.valueProps' },
 		{ type: 'module.faqs' },
 		{ type: 'module.image' },
-		{ type: 'module.reusableModule' },
 		{ type: 'module.productGrid' },
 		{ type: 'module.standardText' },
 	],
