@@ -26,7 +26,7 @@ export default {
 	],
 	preview: {
 		select: {
-			title: 'title',
+			title: 'title'
 		},
 		prepare: selection => ({
 			...selection,

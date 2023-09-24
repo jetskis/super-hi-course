@@ -229,6 +229,23 @@ const MODULE_FAQS = groq`
   }
 `
 
+const MODULE_REUSABLE = groq`
+  (_type == 'module.reusableModule') => {
+    'module': module-> {
+      'modules': reusableComponentList[] {
+        _type,
+        _key,
+        ${MODULE_STANDARD_TEXT},
+        ${MODULE_VALUE_PROPS},
+        ${MODULE_FAQS},
+        ${MODULE_HERO},
+        ${MODULE_IMAGE},
+        ${MODULE_BIG_BENEFITS}
+      }
+    }
+  }
+`
+
 const MODULES = groq`
   _type,
   _key,
@@ -250,6 +267,7 @@ const PAGE_MODULES = groq`
   _key,
   ${MODULE_STANDARD_TEXT},
   ${MODULE_HERO},
+  ${MODULE_REUSABLE},
   ${MODULE_PRODUCT_GRID},
   ${MODULE_VALUE_PROPS},
   ${MODULE_FAQS}

@@ -29,6 +29,10 @@ export async function loader({context}) {
     }
   })
 
+  sanityData.homepage.modules.forEach(module => {
+    console.log('module', module)
+  })
+
   const shopifyProducts = await context.storefront.query(SHOPIFY_PRODUCTS_QUERY, {
     variables: {
       ids: [...new Set(productIds)],

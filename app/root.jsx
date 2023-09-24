@@ -103,8 +103,6 @@ export default function App() {
 
   const {promo} = data.layout;
 
-  console.log('layout', data.layout)
-
   return (
     <ShopifyProvider {...shopifyConfig}>
       <html lang="en">

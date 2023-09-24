@@ -1,4 +1,5 @@
 import React from 'react';
+import reduce from 'lodash/reduce'
 
 import { Hero } from '~/components/sharable/hero'
 import { ValueProps } from '~/components/sharable/valueProps'
@@ -12,8 +13,24 @@ const COMPONENTS = {
 	'module.productGrid': ProductGrid
 };
 
+const unfurlGlobalComponents = (components = []) => {
+	return reduce(
+		components,
+		(componentsWithGlobalsUnfurled, component) => {
+			if (component._type === 'module.reusableModule') {
+				const globalComponents = component.module.modules || []
+				return [...componentsWithGlobalsUnfurled, ...globalComponents]
+			} else {
+				return [...componentsWithGlobalsUnfurled, component]
+			}
+		},
+		[],
+	)
+}
+
 const PageComponentList = ({components = [], componentProps = {}}) => {
-	const componentRows = components?.map((component, index) => {
+	const allComponents = unfurlGlobalComponents(components)
+	const componentRows = allComponents?.map((component, index) => {
 		const Component = COMPONENTS[component._type];
 
 		if (!Component)
