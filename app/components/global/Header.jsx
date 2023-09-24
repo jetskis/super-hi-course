@@ -13,13 +13,13 @@ function HeaderMenu({
   return (
     <div className='relative'>
       <Menu>
-        <Menu.Button>Menu</Menu.Button>
+        <Menu.Button className='font-600 col-span-1 800:text-48'>Menu</Menu.Button>
         <Menu.Items className='absolute top-[30px] left-0 bg-white p-2 rounded-[4px]'>
           {menu?.map(item => {
             switch(item._type) {
               case 'link':
                 return (
-                  <a href={item.url} target={item.openInNewWindow ? '_blank': ''}>
+                  <a href={item.url} key={item._key} target={item.openInNewWindow ? '_blank': ''}>
                     {item.title}
                   </a> 
                 )
@@ -45,7 +45,7 @@ export function Header({ promo, menu, open }) {
   const [root] = useMatches()
   const cart = root.data?.cart
   // const cartOpen = root.data?.cartOpen
-  console.log('header menu', menu)
+
   return (
     <>
       <header

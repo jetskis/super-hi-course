@@ -15,7 +15,7 @@ export const pageLink = groq`{
 	openInNewWindow,
 	title,
 	'pageName': page->title,
-	'slug': page->slug.current,
+	'slug': 'pages/' + page->slug.current,
 }`;
 
 export const productLink = groq`{
