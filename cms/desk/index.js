@@ -178,6 +178,17 @@ export const structure = (S, context) => {
 				.params({type: 'colorType'}),
 		);
 
+	const productLandingsMenuItem = S.listItem()
+		.title('Product Landings')
+		.icon()
+		.child(
+			S.documentList()
+				.title('Product Landings')
+				.menuItems(S.documentTypeList('productLanding').getMenuItems())
+				.filter('_type == $type')
+				.params({type: 'productLanding'}),
+		);
+
 	const productsMenuItem = S.listItem()
 		.title('Shopify Products')
 		.icon()
@@ -196,6 +207,7 @@ export const structure = (S, context) => {
 			S.list()
 				.title('Products')
 				.items([
+					productLandingsMenuItem,
 					S.divider(),
 					productsMenuItem,
 					variantsMenuItem,

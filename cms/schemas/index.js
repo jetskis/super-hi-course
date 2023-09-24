@@ -18,6 +18,8 @@ import home from './documents/home'
 import page from './documents/page'
 import faq from './documents/faq'
 import product from './documents/product'
+
+import productLanding from './documents/productLanding'
 import productVariant from './documents/productVariant'
 import theme from './documents/theme'
 
@@ -28,6 +30,7 @@ const documents = [
   page,
   faq,
   product,
+  productLanding,
   productVariant,
   theme
 ]
@@ -96,6 +99,8 @@ import shopifyCollectionRule from './objects/shopifyCollectionRule'
 import shopifyProduct from './objects/shopifyProduct'
 import shopifyProductVariant from './objects/shopifyProductVariant'
 import shopifyProductVariantOptionValue from './objects/shopifyProductVariantOptionValue'
+
+
 
 const objects = [
   customProductOptionColor,
