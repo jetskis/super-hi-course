@@ -1,5 +1,49 @@
 import groq from 'groq'
 
+
+export const link = groq`{
+	_key,
+	_type,
+	openInNewWindow,
+	title,
+	url,
+}`;
+
+export const pageLink = groq`{
+	_key,
+	_type,
+	openInNewWindow,
+	title,
+	'pageName': page->title,
+	'slug': page->slug.current,
+}`;
+
+export const productLink = groq`{
+	_key,
+	_type,
+	openInNewWindow,
+	title,
+	'productName': product->store.title,
+	'slug': 'products/' + product->store.slug.current,
+}`;
+
+export const collectionLink = groq`{
+	_key,
+	_type,
+	openInNewWindow,
+	title,
+	'collectionName': collection->store.title,
+	'slug': collection->store.slug.current,
+}`;
+
+
+const cta = groq`{
+	...,
+	_type == 'link' => ${link},
+	_type == 'pageLink' => ${pageLink},
+	_type == 'productLink' => ${productLink},
+	_type == 'collectionLink' => ${collectionLink}
+}`;
 const richText = groq`
   ...,
   markDefs[] {
@@ -291,4 +335,21 @@ export const QUERY_HOME = groq`
     }
   }[0]
 `
-
+export const LAYOUT_QUERY = groq`
+  *[_type == 'theme' &&
+  launchDate <= now() &&
+  !(_id in path("drafts.**"))] {
+    promo,
+    headerMenu-> {
+      ...,
+      menu[] ${cta}
+    },
+    footerMenu-> {
+      ...,
+      menu[] {
+        ...,
+        links[] ${cta}
+      }
+    }
+  }[0]
+`

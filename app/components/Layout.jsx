@@ -11,10 +11,16 @@ import { CartDrawer } from '~/components/Cart'
 import { Footer } from '~/components/global/Footer'
 import { Header } from '~/components/global/Header'
 
-export function Layout({children, title}) {
+export function Layout({children, data}) {
   const fetchers = useFetchers()
   const [root] = useMatches()
   const cart = root.data?.cart
+
+  const {
+    promo,
+    footerMenu,
+    headerMenu,
+  } = data
 
   const {isCartOpen, toggleCart} = useStore(
     store => ({
@@ -34,7 +40,7 @@ export function Layout({children, title}) {
 
   return (
     <div className="flex flex-col min-h-screen antialiased font-mono">
-      <Header title={''} open={toggleCart} />
+      <Header promo={promo} menu={headerMenu?.menu} open={toggleCart} />
       <main
         role="main"
         id="mainContent"
@@ -47,7 +53,7 @@ export function Layout({children, title}) {
       }}>
         <CartDrawer cart={cart} close={toggleCart} />
       </Drawer>
-      <Footer />
+      <Footer menu={footerMenu?.menu} tagline={footerMenu?.tagline} />
     </div>
   );
 }

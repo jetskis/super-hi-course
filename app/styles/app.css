@@ -1121,6 +1121,9 @@ select {
 .top-0 {
   top: 0px;
 }
+.top-\[30px\] {
+  top: 30px;
+}
 .z-10 {
   z-index: 10;
 }
@@ -1506,6 +1509,9 @@ select {
 .rounded-sm {
   border-radius: 0.125rem;
 }
+.rounded-\[4px\] {
+  border-radius: 4px;
+}
 .border {
   border-width: 1px;
 }
@@ -1822,6 +1828,9 @@ select {
 }
 .opacity-60 {
   opacity: 0.6;
+}
+.opacity-75 {
+  opacity: 0.75;
 }
 .outline {
   outline-style: solid;

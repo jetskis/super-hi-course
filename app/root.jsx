@@ -15,6 +15,7 @@ import { ExternalScripts } from 'remix-utils'
 
 import {defer} from '@shopify/remix-oxygen';
 import {CART_QUERY} from '~/queries/cart';
+import {LAYOUT_QUERY} from '~/queries/sanity';
 
 import { Seo } from '@shopify/hydrogen'
 import { ShopifyProvider } from '@shopify/hydrogen-react'
@@ -81,7 +82,7 @@ export async function loader({context}) {
   return defer({
     cart: cartId ? getCart(context, cartId) : undefined,
     cartOpen: cartOpen || false,
-    layout: await context.storefront.query(LAYOUT_QUERY),
+    layout: await context.sanity.fetch(LAYOUT_QUERY),
   });
 }
 
@@ -100,7 +101,9 @@ export default function App() {
     console.log(pageAnalytics)
   }, [location])
 
-  const {name} = data.layout.shop;
+  const {promo} = data.layout;
+
+  console.log('layout', data.layout)
 
   return (
     <ShopifyProvider {...shopifyConfig}>
@@ -114,7 +117,7 @@ export default function App() {
           <link href="https://fonts.googleapis.com/css2?family=Martian+Mono:wght@300&display=swap" rel="stylesheet"></link>
         </head>
         <body>
-          <Layout title={name}>
+          <Layout data={data.layout}>
             <Outlet />
           </Layout>
           <ScrollRestoration />
@@ -125,14 +128,5 @@ export default function App() {
     </ShopifyProvider>
   );
 }
-
-const LAYOUT_QUERY = `#graphql
-  query layout {
-    shop {
-      name
-      description
-    }
-  }
-`;
 
 

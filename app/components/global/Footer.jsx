@@ -52,23 +52,30 @@ const MobileMenu = ({ menus }) => {
   )
 }
 
-export function Footer() {
+export function Footer({
+  menu,
+  tagline,
+}) {
   const date = new Date
   return (
     <>
       <footer className='p-5 py-8 800:p-[62px] 1200:px-[100px] bg-primary-green text-black'>
         <div className=''>
           <div className='800:grid 800:grid-cols-12 800:gap-5'>
-            <div className='800:hidden'>
+            {/* <div className='800:hidden'>
               <MobileMenu menus={menus} />
-            </div>
+            </div> */}
             <div className='hidden 800:col-span-9 1200:col-span-9 800:flex'>
-              {menus?.map(menu => (
-                <div className='hidden 800:block col-span-6 800:w-full' key={menu.name}>
-                  <h5 className='uppercase font-600 font-sans text-sans-15 mb-5'>{menu.title}</h5>
-                  {menu.items?.map(item => (
-                    <Link className='block pb-1' key={item.name} to={item.route}>{item.title}</Link>
-                  ))}
+              {menu?.map(singleMenu => (
+                <div className='hidden 800:block col-span-6 800:w-full' key={singleMenu._key}>
+                  <h5 className='uppercase font-600 font-sans text-sans-15 mb-5'>{singleMenu.title}</h5>
+                  {singleMenu.links?.map(item => {
+                    return (
+                      <Link className='block pb-1' key={item._key} to={item.slug}>
+                        {item.title ? item.title : item.productName ? item.productName : 'Unnamed Link'}
+                      </Link>
+                    )}
+                  )}
                 </div>
               ))}
             </div>
@@ -85,7 +92,11 @@ export function Footer() {
           </div>
         </div>
         <div>
-          <div className='text-[10vw] leading-[100%] my-10 800:mt-20'>Building Modular Commerce</div>
+          {tagline && (
+            <div className='text-[10vw] leading-[100%] my-10 800:mt-20'>
+              {tagline}
+            </div>
+          )}
         </div>
       </footer>
       <div className='bg-black text-primary-green p-5 text-center text-primary-grey'>
