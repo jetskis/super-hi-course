@@ -1494,6 +1494,9 @@ select {
 .rounded-\[20px\] {
   border-radius: 20px;
 }
+.rounded-\[4px\] {
+  border-radius: 4px;
+}
 .rounded-\[5px\] {
   border-radius: 5px;
 }
@@ -1508,9 +1511,6 @@ select {
 }
 .rounded-sm {
   border-radius: 0.125rem;
-}
-.rounded-\[4px\] {
-  border-radius: 4px;
 }
 .border {
   border-width: 1px;
@@ -1828,9 +1828,6 @@ select {
 }
 .opacity-60 {
   opacity: 0.6;
-}
-.opacity-75 {
-  opacity: 0.75;
 }
 .outline {
   outline-style: solid;

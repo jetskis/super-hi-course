@@ -16,7 +16,6 @@ import PageComponentList from '~/components/PageComponentList'
 export async function loader({context}) {
 
   const sanityData = await context.sanity.fetch(QUERY_HOME)
-  console.log('sanityData', sanityData)
   const sanityPage = sanityData.homepage
   // console.log('sanity page', sanityPage)
 
@@ -27,10 +26,6 @@ export async function loader({context}) {
         productIds.push(product.store.gid)
       })
     }
-  })
-
-  sanityData.homepage.modules.forEach(module => {
-    console.log('module', module)
   })
 
   const shopifyProducts = await context.storefront.query(SHOPIFY_PRODUCTS_QUERY, {

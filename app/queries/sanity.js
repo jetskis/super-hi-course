@@ -336,6 +336,21 @@ export const QUERY_PRODUCT = (slug) => groq`*[
   }
 `
 
+export const QUERY_PRODUCT_LANDING = (slug) => groq`*[
+  _type == 'productLanding' && 
+  slug.current == "${slug}" &&
+	!(_id in path("drafts.**"))
+  ][0] {
+    ...productReference-> {
+      ${productQuery}
+    },
+    'overrideExperience': {
+      ${productQuery},
+      'slug': slug.current
+    }
+  }
+`
+
 export const QUERY_PAGE = (slug) => groq`*[
   _type == 'page' &&
   slug.current == "${slug}" &&
